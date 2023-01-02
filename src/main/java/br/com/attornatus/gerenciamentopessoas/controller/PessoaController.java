@@ -1,6 +1,9 @@
 package br.com.attornatus.gerenciamentopessoas.controller;
 
 import java.net.URI;
+import java.util.Objects;
+
+import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,6 +75,32 @@ public class PessoaController {
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 					.buildAndExpand(pessoa.getPessoaId()).toUri();
 			return ResponseEntity.created(uri).body(pessoa);
+		} catch (RuntimeException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+	}
+
+	@Transactional
+	@PutMapping(value = "/{pessoaId}")
+	public ResponseEntity<?> update(@PathVariable("pessoaId") Integer pessoaId, @RequestBody Pessoa pessoa) {
+		try {
+			Pessoa newPessoa = pessoaService.findById(pessoaId).get();
+			if (newPessoa.getPessoaId() == null) { 
+				return ResponseEntity.badRequest().body("Pessoa não encontrada");
+			} else { 
+		
+				if (Objects.nonNull(newPessoa.getNome()) 
+						&& !"".equalsIgnoreCase(newPessoa.getNome())) {
+					newPessoa.setNome(pessoa.getNome());
+				}
+		
+				if (Objects.nonNull(newPessoa.getDataNascimento()) 
+						&& !"".equalsIgnoreCase(newPessoa.getDataNascimento().toString())) {
+					newPessoa.setDataNascimento(pessoa.getDataNascimento());
+				}
+		
+				return ResponseEntity.ok(newPessoa);
+			}
 		} catch (RuntimeException e) {
 			return ResponseEntity.internalServerError().build();
 		}
