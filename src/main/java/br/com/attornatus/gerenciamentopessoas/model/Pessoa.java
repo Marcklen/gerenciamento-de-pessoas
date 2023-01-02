@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "TB_PESSOA")
 public class Pessoa implements Serializable {
@@ -29,6 +30,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "pessoa")
 	private Set<Endereco> enderecos;
 
