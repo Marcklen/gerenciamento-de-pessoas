@@ -33,7 +33,7 @@ public class PessoaController {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<?> findAllPessoas() {
 		try {
 			var pessoasList = pessoaService.findAll();
@@ -45,6 +45,25 @@ public class PessoaController {
 		}
 	}
 
+	@GetMapping(value = "/{pessoaId}")	
+	public ResponseEntity<?> findByIdPessoa(@PathVariable Integer pessoaId) { 
+		try {
+			
+			var optionalPessoa = pessoaService.findById(pessoaId);
+			if (!optionalPessoa.isPresent()) {
+				return ResponseEntity.badRequest().body("Pessoa não encontrada");
+			}
+			
+			var resultado = optionalPessoa.stream().map(pessoa -> 
+			modelMapper.map(pessoa, PessoaDTO.class)).toList();
+			
+			return ResponseEntity.ok(resultado);
+			
+		} catch(RuntimeException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+	}
+	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Pessoa pessoa) {
 		try {
