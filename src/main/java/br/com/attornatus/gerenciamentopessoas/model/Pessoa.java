@@ -2,11 +2,13 @@ package br.com.attornatus.gerenciamentopessoas.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,14 +33,14 @@ public class Pessoa implements Serializable {
 	private LocalDate dataNascimento;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "pessoa")
-	private Set<Endereco> enderecos;
+	@OneToMany(mappedBy = "pessoa", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<Endereco> enderecos;
 
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pessoa(Integer pessoaId, String nome, LocalDate dataNascimento, Set<Endereco> enderecos) {
+	public Pessoa(Integer pessoaId, String nome, LocalDate dataNascimento, List<Endereco> enderecos) {
 		super();
 		this.pessoaId = pessoaId;
 		this.nome = nome;
@@ -58,9 +60,9 @@ public class Pessoa implements Serializable {
 
 	public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
 
-	public Set<Endereco> getEnderecos() { return enderecos; }
+	public List<Endereco> getEnderecos() { return enderecos; }
 
-	public void setEnderecos(Set<Endereco> enderecos) { this.enderecos = enderecos; }
+	public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
 
 	@Override
 	public int hashCode() {

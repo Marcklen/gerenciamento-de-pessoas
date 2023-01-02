@@ -2,11 +2,8 @@ package br.com.attornatus.gerenciamentopessoas.model.dto;
 
 import java.util.Objects;
 
-//import br.com.attornatus.gerenciamentopessoas.model.Pessoa;
-
 public class EnderecoDTO {
 
-	// private Pessoa pessoaId;
 	private Integer enderecoId;
 	private String logradouro;
 	private String cep;
@@ -15,7 +12,6 @@ public class EnderecoDTO {
 
 	public EnderecoDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public EnderecoDTO(Integer enderecoId, String logradouro, String cep, Integer numero, String cidade) {
@@ -27,45 +23,25 @@ public class EnderecoDTO {
 		this.cidade = cidade;
 	}
 
-	public Integer getEnderecoId() {
-		return enderecoId;
-	}
+	public Integer getEnderecoId() { return enderecoId; }
 
-	public void setEnderecoId(Integer enderecoId) {
-		this.enderecoId = enderecoId;
-	}
+	public void setEnderecoId(Integer enderecoId) { this.enderecoId = enderecoId; }
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+	public String getLogradouro() { return logradouro; }
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
+	public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
 
-	public String getCep() {
-		return cep;
-	}
+	public String getCep() { return cep; }
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+	public void setCep(String cep) { this.cep = cep; }
 
-	public Integer getNumero() {
-		return numero;
-	}
+	public Integer getNumero() { return numero; }
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
+	public void setNumero(Integer numero) { this.numero = numero; }
 
-	public String getCidade() {
-		return cidade;
-	}
+	public String getCidade() { return cidade; }
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+	public void setCidade(String cidade) { this.cidade = cidade; }
 
 	@Override
 	public int hashCode() {

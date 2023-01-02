@@ -3,7 +3,6 @@ package br.com.attornatus.gerenciamentopessoas.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +27,8 @@ public class Endereco implements Serializable {
 	private String cidade;
 
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	//@JsonManagedReference
+	@ManyToOne
 	@JoinColumn(name = "pessoa_id", referencedColumnName = "pessoaId", nullable = false)
 	private Pessoa pessoa;
 

@@ -10,7 +10,7 @@ public class EnderecoCreateDTO {
 	private String cidade;
 
 	public EnderecoCreateDTO() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public EnderecoCreateDTO(String logradouro, String cep, Integer numero, String cidade) {
@@ -21,37 +21,21 @@ public class EnderecoCreateDTO {
 		this.cidade = cidade;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+	public String getLogradouro() { return logradouro; }
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
+	public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
 
-	public String getCep() {
-		return cep;
-	}
+	public String getCep() { return cep; }
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+	public void setCep(String cep) { this.cep = cep; }
 
-	public Integer getNumero() {
-		return numero;
-	}
+	public Integer getNumero() { return numero; }
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
+	public void setNumero(Integer numero) { this.numero = numero; }
 
-	public String getCidade() {
-		return cidade;
-	}
+	public String getCidade() { return cidade; }
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+	public void setCidade(String cidade) { this.cidade = cidade; }
 
 	@Override
 	public int hashCode() {

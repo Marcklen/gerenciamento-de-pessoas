@@ -2,8 +2,8 @@ package br.com.attornatus.gerenciamentopessoas.model.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,14 +17,14 @@ public class PessoaDTO implements Serializable {
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
-	private Set<Endereco> enderecos;
+	private List<Endereco> enderecos;
 
 	public PessoaDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PessoaDTO(Integer pessoaId, String nome, LocalDate dataNascimento, Set<Endereco> enderecos) {
+	public PessoaDTO(Integer pessoaId, String nome, LocalDate dataNascimento, List<Endereco> enderecos) {
 		super();
 		this.pessoaId = pessoaId;
 		this.nome = nome;
@@ -56,11 +56,11 @@ public class PessoaDTO implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Set<Endereco> getEnderecos() {
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(Set<Endereco> enderecos) {
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
