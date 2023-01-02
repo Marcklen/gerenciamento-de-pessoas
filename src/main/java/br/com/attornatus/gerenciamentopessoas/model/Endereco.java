@@ -3,7 +3,10 @@ package br.com.attornatus.gerenciamentopessoas.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.attornatus.gerenciamentopessoas.model.enums.TipoEndereco;
 
 @Entity(name = "TB_ENDERECO")
 public class Endereco implements Serializable {
@@ -25,6 +30,10 @@ public class Endereco implements Serializable {
 	private String cep;
 	private Integer numero;
 	private String cidade;
+	
+	@Enumerated(EnumType.STRING)
+    @Column(name="tipo_endereco")
+	private TipoEndereco tipo;
 
 	@JsonIgnore
 	//@JsonManagedReference
@@ -37,7 +46,8 @@ public class Endereco implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Endereco(Integer enderecoId, String logradouro, String cep, Integer numero, String cidade, Pessoa pessoa) {
+	public Endereco(Integer enderecoId, String logradouro, String cep, Integer numero, 
+			String cidade, Pessoa pessoa, TipoEndereco tipo) {
 		super();
 		this.enderecoId = enderecoId;
 		this.logradouro = logradouro;
@@ -45,6 +55,7 @@ public class Endereco implements Serializable {
 		this.numero = numero;
 		this.cidade = cidade;
 		this.pessoa = pessoa;
+		this.tipo = tipo;
 	}
 
 	public Integer getEnderecoId() { return enderecoId; }
@@ -70,10 +81,14 @@ public class Endereco implements Serializable {
 	public Pessoa getPessoa() { return pessoa; }
 
 	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
+	
+	public TipoEndereco getTipo() { return tipo; }
+	
+	public void setTipo(TipoEndereco tipo) { this.tipo = tipo; }
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cep, cidade, enderecoId, logradouro, numero, pessoa);
+		return Objects.hash(cep, cidade, enderecoId, logradouro, numero, pessoa, tipo);
 	}
 
 	@Override
@@ -87,13 +102,12 @@ public class Endereco implements Serializable {
 		Endereco other = (Endereco) obj;
 		return Objects.equals(cep, other.cep) && Objects.equals(cidade, other.cidade)
 				&& Objects.equals(enderecoId, other.enderecoId) && Objects.equals(logradouro, other.logradouro)
-				&& Objects.equals(numero, other.numero) && Objects.equals(pessoa, other.pessoa);
+				&& Objects.equals(numero, other.numero) && Objects.equals(pessoa, other.pessoa) && tipo == other.tipo;
 	}
 
 	@Override
 	public String toString() {
 		return "Endereco [enderecoId=" + enderecoId + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
-				+ numero + ", cidade=" + cidade + ", pessoa=" + pessoa + "]";
+				+ numero + ", cidade=" + cidade + ", tipo=" + tipo + ", pessoa=" + pessoa + "]";
 	}
-
 }

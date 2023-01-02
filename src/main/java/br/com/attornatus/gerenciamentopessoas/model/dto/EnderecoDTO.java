@@ -2,6 +2,8 @@ package br.com.attornatus.gerenciamentopessoas.model.dto;
 
 import java.util.Objects;
 
+import br.com.attornatus.gerenciamentopessoas.model.enums.TipoEndereco;
+
 public class EnderecoDTO {
 
 	private Integer enderecoId;
@@ -9,18 +11,20 @@ public class EnderecoDTO {
 	private String cep;
 	private Integer numero;
 	private String cidade;
+	private TipoEndereco tipo;
 
 	public EnderecoDTO() {
 		super();
 	}
 
-	public EnderecoDTO(Integer enderecoId, String logradouro, String cep, Integer numero, String cidade) {
+	public EnderecoDTO(Integer enderecoId, String logradouro, String cep, Integer numero, String cidade, TipoEndereco tipo) {
 		super();
 		this.enderecoId = enderecoId;
 		this.logradouro = logradouro;
 		this.cep = cep;
 		this.numero = numero;
 		this.cidade = cidade;
+		this.tipo = tipo;
 	}
 
 	public Integer getEnderecoId() { return enderecoId; }
@@ -42,10 +46,14 @@ public class EnderecoDTO {
 	public String getCidade() { return cidade; }
 
 	public void setCidade(String cidade) { this.cidade = cidade; }
+	
+	public TipoEndereco getTipo() { return tipo; }
+	
+	public void setTipo(TipoEndereco tipo) { this.tipo = tipo; }
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cep, cidade, enderecoId, logradouro, numero);
+		return Objects.hash(cep, cidade, enderecoId, logradouro, numero, tipo);
 	}
 
 	@Override
@@ -59,12 +67,12 @@ public class EnderecoDTO {
 		EnderecoDTO other = (EnderecoDTO) obj;
 		return Objects.equals(cep, other.cep) && Objects.equals(cidade, other.cidade)
 				&& Objects.equals(enderecoId, other.enderecoId) && Objects.equals(logradouro, other.logradouro)
-				&& Objects.equals(numero, other.numero);
+				&& Objects.equals(numero, other.numero) && tipo == other.tipo;
 	}
 
 	@Override
 	public String toString() {
 		return "EnderecoDTO [enderecoId=" + enderecoId + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
-				+ numero + ", cidade=" + cidade + "]";
+				+ numero + ", cidade=" + cidade + ", tipo=" + tipo + "]";
 	}
 }
