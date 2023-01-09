@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import br.com.attornatus.gerenciamentopessoas.model.dto.PessoaDTO;
 import br.com.attornatus.gerenciamentopessoas.service.EnderecoService;
 import br.com.attornatus.gerenciamentopessoas.service.PessoaService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/pessoas")
 public class PessoaController {

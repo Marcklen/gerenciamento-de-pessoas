@@ -3,6 +3,7 @@ package br.com.attornatus.gerenciamentopessoas.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.attornatus.gerenciamentopessoas.model.dto.EnderecoDTO;
 import br.com.attornatus.gerenciamentopessoas.service.EnderecoService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/enderecos")
 public class EnderecoController {
